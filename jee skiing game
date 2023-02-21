@@ -1,0 +1,46 @@
+import random
+
+def blow_skiing_game():
+    # initialize the game
+    distance = 0
+    speed = 0
+    slope = 0
+    
+    print("Welcome to Blow Skiing!")
+    print("You are skiing down a slope and must use your breath to control your speed.")
+    print("The goal is to reach the bottom of the slope in the shortest amount of time possible.")
+    
+    # generate a random slope and speed for the game
+    slope = random.randint(1, 10)
+    speed = random.randint(1, 10)
+    
+    print(f"\nThe slope has a difficulty rating of {slope} and your starting speed is {speed}.")
+    
+    # play the game
+    while distance < 100:
+        print("\nYou have traveled", distance, "meters so far.")
+        print("Your current speed is", speed)
+        
+        # ask the player to blow to control their speed
+        blow = input("Blow softly (s), moderately (m), or hard (h)? ")
+        if blow == "s":
+            speed += random.randint(1, 2)
+        elif blow == "m":
+            speed += random.randint(2, 3)
+        elif blow == "h":
+            speed += random.randint(3, 4)
+        else:
+            print("Invalid input. Try again.")
+            continue
+        
+        # calculate the distance traveled based on the current speed and slope
+        distance += speed * slope
+        
+        # check if the player has reached the end of the slope
+        if distance >= 100:
+            print("\nYou made it to the bottom of the slope in", distance / speed, "seconds!")
+        elif distance < 0:
+            print("\nYou crashed and burned! Game over.")
+            break
+
+blow_skiing_game()
